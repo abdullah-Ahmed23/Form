@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advance from</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="inputs">
+    <label for="owner" class="inp">
+        <input type="text" id="owner" placeholder="&nbsp;">
+        <span class="label">owner's name</span>
+        <span class="focus-bg"></span>
+      </label>
+    <label for="phone" class="inp">
+        <input type="text" id="phone" placeholder="&nbsp;">
+        <span class="label">Phone number</span>
+        <span class="focus-bg"></span>
+      </label>
+    <label for="address" class="inp">
+        <input type="text" id="address" placeholder="&nbsp;">
+        <span class="label">Address</span>
+        <span class="focus-bg"></span>
+      </label>
+    <label for="address" class="inp">
+        <input type="text" id="address" placeholder="&nbsp;">
+        <span class="label">Mv</span>
+        <span class="focus-bg"></span>
+      </label>
+
+      <div class="pillar">
+        <label for="closing" class="inp">
+          <div class="inputss">
+            <input type="text" id="closing" placeholder="Price" disabled>
+            <input type="checkbox" class="switch" id="switch1">
+            <label for="switch1" class="toggle-label">Toggle</label>
+            <span class="focus-bg"></span>
+          </div>
+        </label>
+      </div>
+      <div class="pillar">
+        <label for="reason" class="inp">
+          <div class="inputss">
+            <input type="text" id="reason" placeholder="Condtion" disabled>
+            <input type="checkbox" class="switch" id="switch2">
+            <label for="switch2" class="toggle-label">Toggle</label>
+            <span class="focus-bg"></span>
+          </div>
+        </label>
+      </div>
+      <div class="pillar">
+        <label for="notes" class="inp">
+          <div class="inputss">
+            <input type="text" id="notes" placeholder="Closing" disabled>
+            <input type="checkbox" class="switch" id="switch3">
+            <label for="switch3" class="toggle-label">Toggle</label>
+            <span class="focus-bg"></span>
+          </div>
+        </label>
+      </div>
+      <div class="pillar">
+        <label for="comment" class="inp">
+          <div class="inputss">
+            <input type="text" id="comment" placeholder="Reason" disabled>
+            <input type="checkbox" class="switch" id="switch4">
+            <label for="switch4" class="toggle-label">Toggle</label>
+            <span class="focus-bg"></span>
+          </div>
+        </label>
+      </div>
+      <div class="pillar">
+        <label for="Market" class="inp">
+          <div class="inputss">
+            <input type="text" id="Market" placeholder="Market" disabled>
+            <input type="checkbox" class="switch" id="switch5">
+            <label for="switch5" class="toggle-label">Toggle</label>
+            <span class="focus-bg"></span>
+          </div>
+        </label>
+      </div>
+      
+    </div>
+    
+</div>
+<div class="press">
+    <button class="animated-button" id="generateFile">
+        <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+          <path
+            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+          ></path>
+        </svg>
+        <span class="text">L E A D</span>
+        <span class="circle"></span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+          <path
+            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+          ></path>
+        </svg>
+      </button>
+      
+</div>
+
+
+<script>
+// Get all toggle switches
+const toggleSwitches = document.querySelectorAll('.switch');
+
+// Loop through each toggle switch and attach event listener
+toggleSwitches.forEach(function(switchElement) {
+  switchElement.addEventListener('change', function() {
+    const inputField = this.parentNode.querySelector('input[type="text"]');
+    inputField.disabled = !this.checked;
+  });
+});
+document.getElementById('generateFile').addEventListener('click', function() {
+    // Get all input elements
+    const inputFields = document.querySelectorAll('input[type="text"]');
+  
+    // Create an array to store input values
+    const inputValues = [];
+  
+    // Loop through each input field
+    inputFields.forEach(function(inputField) {
+      // Get the value of the input field
+      const value = inputField.value.trim() || 'N/a';
+      // Add the value to the array
+      inputValues.push(value);
+    });
+  
+    // Create a text string with the input values separated by newline characters
+    const textContent = inputValues.join('\n');
+  
+    // Create a Blob object containing the text content
+    const blob = new Blob([textContent], { type: 'text/plain' });
+  
+    // Create a link element to download the text file
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'inputs.txt';
+  
+    // Append the link to the document body and click it programmatically
+    document.body.appendChild(link);
+    link.click();
+  
+    // Clean up
+    document.body.removeChild(link);
+  });
+</script>
+</body>
+</html>
